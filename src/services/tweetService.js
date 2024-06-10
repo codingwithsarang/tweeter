@@ -9,7 +9,7 @@ class TweetService {
     async create(data) {
         try {
             const content = data.content
-            const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag)=> tag.substring(1))
+            const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag)=> tag.substring(1)).map((tag)=> tag.toLowerCase())
             const tweet = await this.tweetRespository.create(data)
             let alreadyPresentTags = await this.hashtagRespository.findByName(tags)
             let titleOfPresentTags = alreadyPresentTags.map(tag => tag.title)
@@ -22,12 +22,6 @@ class TweetService {
                 tag.tweets.push(tweet._id)
                 tag.save()
             })        
-            const allHashtags = [...res,...alreadyPresentTags]
-
-            allHashtags.map((tag)=>{
-                tweet.hashtags.push(tag._id)
-            })
-            await tweet.save()
             return tweet
         } catch (error) {
             console.log(error)
