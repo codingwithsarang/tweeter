@@ -13,15 +13,27 @@ const commentSchema = mongoose.Schema({
     onModel: {
         type: String,
         required: true,
-        enum: ['Tweet','Comment']
+        enum: ['Tweet', 'Comment']
     },
-    commentAble: {
+    commentable: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         refPath: 'onModel'
-    }
-}, { timestamps: true})
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ],
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
+}, { timestamps: true })
 
-const Comment = mongoose.model('Comment',commentSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
 export default Comment
