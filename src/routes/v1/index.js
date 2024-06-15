@@ -6,9 +6,10 @@ import { login, signup } from '../../controller/user-controller.js'
 
 import { authenticate } from '../../middlewares/authenticate.js'
 
+
 const router = express.Router()
 
-router.post('/tweet',authenticate,createTweet)
+router.post('/tweet',createTweet)
 
 router.post('/like/toggle',toggleLike)
 

@@ -2,7 +2,7 @@ import multer from "multer";
 import multerS3 from 'multer-s3'
 import aws from 'aws-sdk'
 
-import {AWS_REGION, S3_ACCESS_KEY, BUCKET_NAME} from './server-config.js'
+import {AWS_REGION, S3_ACCESS_KEY, BUCKET_NAME,S3_SECRET_ACCESS_KEY } from './server-config.js'
 
 aws.config.update({
     region: AWS_REGION,
@@ -16,7 +16,6 @@ const upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: BUCKET_NAME,
-        acl: 'pulic-read',
         metadata: function(req, file, cb){
             cb(null, {fieldName: file.fieldname})
         },
@@ -25,3 +24,5 @@ const upload = multer({
         }
     })
 })
+
+export default upload

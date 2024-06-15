@@ -2,9 +2,10 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-export default {
-    AWS_REGION: process.env.AWS_REGION,
-    S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY,
-    S3_ACCESS_KEY: process.env.S3_ACCESS_KEY,
-    BUCKET_NAME: process.env.BUCKET_NAME
-}
+
+   export const AWS_REGION = process.env.AWS_REGION
+   export const S3_SECRET_ACCESS_KEY =  process.env.S3_SECRET_ACCESS_KEY
+   export const S3_ACCESS_KEY= process.env.S3_ACCESS_KEY
+   export const BUCKET_NAME = process.env.BUCKET_NAME
+
+

@@ -34,8 +34,9 @@ class TweetService {
             const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1).toLowerCase())
             const tweet = await this.tweetRespository.create(data)
             await this.#seprateExistingTags(tags, tweet)
+            console.log('in service :',data)
             return tweet
-        } catch (error) {
+        } catch (error) { 
             console.log(error)
         }
 
