@@ -6,7 +6,7 @@ import upload from '../config/file-upload-s3-config.js'
 
 
 
-const singleUploader = upload.single('image')
+const singleUploader = upload.array('images',3)
 
 export const createTweet =async(req,res)=>{
     try {
@@ -17,10 +17,8 @@ export const createTweet =async(req,res)=>{
                 })
             }
             const payload = req.body
-            payload.image = req.file.location
-            console.log(payload)
+            payload.images = req.files.map((file)=> file.location )
             const response = await tweetService.create(payload)
-
             return res.status(201).json({
                 success: true,
                 message: 'Successfully create a new tweet',

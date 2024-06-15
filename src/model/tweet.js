@@ -18,10 +18,11 @@ const tweetSchema = mongoose.Schema({
             ref: 'Comment'
         }
     ],
-    image: {
+    images:[
+         {
             type: String
         }
-    
+    ]
 
 }, { timestamps: true })
 
